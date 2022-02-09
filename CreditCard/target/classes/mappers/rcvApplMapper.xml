@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="rcvAppl">
+	<!-- 입회 신청 가능 -->
+	<insert id="insertRcvAppl" parameterType="rcvApplVo">
+		<![CDATA[
+ 			INSERT INTO RCVAPPL(SSN, RCV_D, RCV_SEQ_NO, APPL_D, BIRTH_D, HG_NM, ENG_NM, STL_MTD, STL_ACT, BNK_CD, STL_DD,
+							APPL_CLAS, STMT_SND_MTD, BILLADR_ADR1, BILLADR_ADR2, BILLADR_ZIP, HDP_NO, BRD, SCRT_NO, EMAIL_ADR,
+							IMPSB_CLAS, IMPSB_CD, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
+ 			VALUES(#{SSN}
+			,#{RCV_D}
+			,RCV_SEQ_NO.nextval
+			,#{APPL_D}
+			,#{BIRTH_D}
+			,#{HG_NM}
+			,#{ENG_NM}
+			,#{STL_MTD}
+			,#{STL_ACT}
+			,#{BNK_CD}
+			,#{STL_DD}
+			,#{APPL_CLAS}
+			,#{STMT_SND_MTD}
+			,#{BILLADR_ADR1}
+			,#{BILLADR_ADR2}
+			,#{BILLADR_ZIP}
+			,#{HDP_NO}
+			,#{BRD}
+			,#{SCRT_NO}
+			,#{EMAIL_ADR}
+			,'0'
+			,'00'
+			,TO_CHAR(sysdate, 'HH24:MI')
+			,TO_CHAR(sysdate, 'YYYYMMDD')
+			,00000001
+ 		)
+ 		]]>
+	</insert>
+	
+	<!-- 중복가입 불능 -->
+	<insert id="updateDoubeRcv" parameterType="rcvApplVo">
+		<![CDATA[
+			INSERT INTO RCVAPPL(SSN, RCV_D, RCV_SEQ_NO, APPL_D, BIRTH_D, HG_NM, ENG_NM, STL_MTD, STL_ACT, BNK_CD, STL_DD,
+							APPL_CLAS, STMT_SND_MTD, BILLADR_ADR1, BILLADR_ADR2, BILLADR_ZIP, HDP_NO, BRD, SCRT_NO, EMAIL_ADR,
+							IMPSB_CLAS, IMPSB_CD, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
+ 			VALUES(#{SSN}
+			,#{RCV_D}
+			,RCV_SEQ_NO.nextval
+			,#{APPL_D}
+			,#{BIRTH_D}
+			,#{HG_NM}
+			,#{ENG_NM}
+			,#{STL_MTD}
+			,#{STL_ACT}
+			,#{BNK_CD}
+			,#{STL_DD}
+			,#{APPL_CLAS}
+			,#{STMT_SND_MTD}
+			,#{BILLADR_ADR1}
+			,#{BILLADR_ADR2}
+			,#{BILLADR_ZIP}
+			,#{HDP_NO}
+			,#{BRD}
+			,#{SCRT_NO}
+			,#{EMAIL_ADR}
+			,'1'
+			,'01'
+			,TO_CHAR(sysdate, 'HH24:MI')
+			,TO_CHAR(sysdate, 'YYYYMMDD')
+			,00000001
+ 		)
+		]]>
+	</insert>
+
+	<!-- 기간별 입회신청 조회 -->
+	<select id="rcvInquiry" resultType="rcvApplVo">
+			SELECT * FROM RCVAPPL WHERE 1=1
+			<if test="APPL_CLAS != null and APPL_CLAS != ''">
+				AND APPL_CLAS = #{APPL_CLAS}
+			</if>
+			<if test="SSN != null and SSN != ''">
+				AND SSN = ${SSN}
+			</if>
+	</select>
+
+	<!-- 신청구분 가져오기 -->
+	<select id="getApplClas" resultType="commCodeDtlVO">
+		SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+		FROM COMM_CODE_DTL
+		WHERE GROUP_NM = '신청구분'
+	</select>
+	
+	<!-- 브랜드 가져오기 -->
+	<select id="getBrand" resultType="commCodeDtlVO">
+		SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+		FROM COMM_CODE_DTL
+		WHERE GROUP_NM = '브랜드'
+	</select>
+	
+	<!-- 결제은행 가져오기 -->
+	<select id="getBank" resultType="commCodeDtlVO">
+		SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+		FROM COMM_CODE_DTL
+		WHERE GROUP_NM = '결제은행코드'
+	</select>
+	
+	<!-- 결제일자 가져오기 -->
+	<select id="getStlDate" resultType="commCodeDtlVO">
+		SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+		FROM COMM_CODE_DTL
+		WHERE GROUP_NM = '결제일자'
+	</select>
+	
+	<!-- 청구서 발송방법 가져오기 -->
+	<select id="getStmtMtd" resultType="commCodeDtlVO">
+		<![CDATA[
+			SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+			FROM COMM_CODE_DTL
+			WHERE GROUP_NM = '청구서발송방법'
+		]]>
+	</select>
+	
+	<!-- 결제 방법 가져오기 -->
+	<select id="getStlMth" resultType="commCodeDtlVO">
+		SELECT GROUP_CD, GROUP_NM, CODE, CODE_NM
+		FROM COMM_CODE_DTL
+		WHERE GROUP_NM = '결제방법'
+	</select>
+</mapper>
