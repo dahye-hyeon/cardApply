@@ -17,7 +17,7 @@ public class RcvApplServiceImpl implements RcvApplService{
 	private RcvApplDAO rcvApplDao;
 	@Autowired
 	private CommCodeDAO commCodeDao;
-
+	
 	@Override
 	/* 중복가입 불능 */
 	public int updateDoubeRcv(RcvApplVO rcvpplVo) {

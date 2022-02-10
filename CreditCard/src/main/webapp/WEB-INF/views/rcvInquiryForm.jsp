@@ -12,34 +12,34 @@
 <body>
 <script>
 	function rcvInquiry(){
-		
-		var params = {
-			"applClas" : $('select[name=APPL_CLAS] option:selected"').val(),
-			"ssn" : $('#SSN').val()
-		};
-		console.log("입회신청 내역조회");		
+		var applClas =$("#APPL_CLAS option:selected").text();
+		var ssn = $('#SSN').val();
+		var params = {"APPL_CLAS":applClas, "SSN":ssn};
 		console.log(params);
 		$.ajax({
-			url:'/rcvAppl/rcvInquiry',
-			type:'POST',
-			data:params,
-			datatype:"json",
-			success:function(params){
-				
-				
+			url:"rcvInquiry",
+			type:"POST",
+			data:JSON.stringify(params),
+			datatype:"text",
+			contentType:"application/json; charset=UTF-8",
+			success:function(data){
+				alert("통신성공!");
+			},
+			error:function(jqXHR, textStatus, errorThrown){
+				alert("ERROR: " + textStatus + " : " + errorThrown);
 			}
-		})
+		});
 	}
 </script>
 
 <form action="/" method="post">
-	기간 <input type="date" name="stard_d" id="stard_d">~<input type="date" name="end_d" id="end_d">
+	<!--기간 <input type="date" name="stard_d" id="stard_d">~<input type="date" name="end_d" id="end_d">-->
 	신청구분 <select name="APPL_CLAS" id="APPL_CLAS">
 			<c:forEach items="${applClasList }"	var="applclas">
 				<option value="${brand.CODE }"><c:out value="${applclas.CODE_NM }" /></option>
 			</c:forEach></select>
 	주민등록번호 <input type="text" name="SSN" id="SSN">
-	<input type="button" value="조 회" id="inquiry" onclick="rcvInquiry()"> 
+	<a href="#" id="inquiry" onclick="rcvInquiry()" >조 회</a>
 </form>
 <hr>
 <h3>조회결과</h3>

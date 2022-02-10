@@ -10,7 +10,7 @@
 							APPL_CLAS, STMT_SND_MTD, BILLADR_ADR1, BILLADR_ADR2, BILLADR_ZIP, HDP_NO, BRD, SCRT_NO, EMAIL_ADR,
 							IMPSB_CLAS, IMPSB_CD, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
  			VALUES(#{SSN}
-			,#{RCV_D}
+ 			,#{RCV_D}
 			,RCV_SEQ_NO.nextval
 			,#{APPL_D}
 			,#{BIRTH_D}
@@ -82,7 +82,7 @@
 			<if test="SSN != null and SSN != ''">
 				AND SSN = ${SSN}
 			</if>
-	</select>
+	</select>	
 
 	<!-- 신청구분 가져오기 -->
 	<select id="getApplClas" resultType="commCodeDtlVO">

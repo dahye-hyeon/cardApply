@@ -3,4 +3,29 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cust">
+
+	<!-- 회원 존재 유무 -->
+	<select id="selectCust" resultType="Integer">
+		<![CDATA[
+			SELECT count(*) FROM CUST
+			WHERE SSN=#{SSN}
+		]]>
+	</select>
+	
+	<!-- 회원 등록 -->
+	<insert id="insertCust" parameterType="custVo">
+		<![CDATA[
+			INSERT INTO CUST(CUST_NO, SSN, REG_D, HG_NM, BIRTH_D, HDP_NO, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
+			VALUES(CUST_SEQ_NO.nextval
+				,#{SSN}
+				,#{REG_D}
+				,#{HG_NM}
+				,#{BIRTH_D}
+				,#{HDP_NO}
+				,TO_CHAR(sysdate, 'HH24:MI')
+				,TO_CHAR(sysdate, 'YYYYMMDD')
+				,00000001
+			)
+		]]>
+	</insert>
 </mapper>
