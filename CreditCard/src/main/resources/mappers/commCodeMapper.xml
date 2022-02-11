@@ -12,4 +12,13 @@
 			WHERE SSN=#{SSN} and HG_NM=#{HG_NM} and RCV_D=#{RCV_D}
 		]]>
 	</select>
+	
+	<!-- 신청 구분 가져오기 -->
+	<select id="getApplClas" resultType="string">		
+		<![CDATA[
+			SELECT CODE, CODE_NM
+			FROM COMM_CODE_DTL
+			WHERE GROUP_CODE = 'C007' AND CODE=${CODE}
+		]]>
+	</select>
 </mapper>

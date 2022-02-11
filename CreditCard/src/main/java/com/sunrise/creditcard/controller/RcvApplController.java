@@ -1,9 +1,5 @@
 package com.sunrise.creditcard.controller;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -95,7 +91,7 @@ public class RcvApplController {
 			cardVo.setREG_D(rcvDate);
 			cardVo.setCRD_NO(brdNum);
 			
-			cardServiceImpl.insertCard(cardVo);
+			//cardServiceImpl.insertCard(cardVo);
 		}
 		return "main";
 	}

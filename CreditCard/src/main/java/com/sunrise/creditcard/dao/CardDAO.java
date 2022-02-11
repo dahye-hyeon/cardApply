@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sunrise.creditcard.vo.CardVO;
+import com.sunrise.creditcard.vo.RcvApplVO;
 
 @Repository
 public class CardDAO {
@@ -13,13 +14,12 @@ public class CardDAO {
 	private SqlSession sqlSession;
 	
 	/* 카드 소지 여부 */
-	public int selectCard(CardVO cardVo) {
-		return sqlSession.selectOne("card.selectCard", cardVo);
+	public int selectCard(RcvApplVO rcvApplVo) {
+		return sqlSession.selectOne("card.selectCard", rcvApplVo);
 	}
 	
 	/* 카드 생성 */
-	public int insertCard(CardVO cardVo) {
-		System.out.println("dao에서영어이름:"+cardVo.getENG_NM());
-		return sqlSession.insert("card.insertCard", cardVo);
+	public int insertCard(RcvApplVO rcvApplVo) {
+		return sqlSession.insert("card.insertCard", rcvApplVo);
 	}
 }

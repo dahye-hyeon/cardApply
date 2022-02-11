@@ -25,4 +25,10 @@ public class CommCodeServiceImpl implements CommonCodeService {
 		}
 	}
 
+	/* 신청 구분 가져오기 */
+	@Override
+	public String getApplClas(RcvApplVO rcvpplVo) {
+		return CommCodeDao.getApplClas(rcvpplVo);
+	}
+
 }

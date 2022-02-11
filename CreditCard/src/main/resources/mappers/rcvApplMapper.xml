@@ -65,7 +65,7 @@
 			,#{SCRT_NO}
 			,#{EMAIL_ADR}
 			,'1'
-			,'01'
+			,#{IMPSB_CD}
 			,TO_CHAR(sysdate, 'HH24:MI')
 			,TO_CHAR(sysdate, 'YYYYMMDD')
 			,00000001

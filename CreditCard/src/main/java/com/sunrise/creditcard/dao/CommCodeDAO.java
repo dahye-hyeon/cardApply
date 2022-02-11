@@ -15,4 +15,9 @@ public class CommCodeDAO {
 	public int doubleRcv(RcvApplVO rcvpplVo) {
 		return sqlSession.selectOne("commCode.doubleRcv", rcvpplVo);
 	}
+	
+	/* 신청 구분 가져오기 */
+	public String getApplClas(RcvApplVO rcvpplVo) {
+		return sqlSession.selectOne("commCode.getApplClas", rcvpplVo);
+	}
 }

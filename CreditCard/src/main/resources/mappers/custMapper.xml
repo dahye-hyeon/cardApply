@@ -36,4 +36,5 @@
 			WHERE SSN = #{SSN} AND HG_NM = #{HG_NM}
 		]]>
 	</select>
+
 </mapper>

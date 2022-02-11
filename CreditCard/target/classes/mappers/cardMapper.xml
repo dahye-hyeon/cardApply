@@ -7,7 +7,7 @@
 	<!-- 카드 소지 여부 -->
 	<select id="selectCard" resultType="Integer">
 		<![CDATA[
-			SELECT count(*) FROM CRD
+			SELECT count(*) FROM RCV
 			WHERE CRD_NO=#{CRD_NO} and SSN=#{SSN}
 		]]>
 	</select>
@@ -16,7 +16,7 @@
 	<insert id="insertCard" parameterType="cardVo">
 		<![CDATA[
 			INSERT INTO CRD(CRD_NO, CUST_NO, REG_D, SSN, VLD_DUR, BRD, SCRT_NO, ENG_NM, BF_CRD_NO, LST_CRD_F, FST_REG_D, CRD_GRD, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
-			VALUES(${CRD_NO}||CARD_SEQ_NO.nextval||'1'
+			VALUES(#{CRD_NO}||CARD_SEQ_NO.nextval||'1'
 			,#{CUST_NO}
 			,#{REG_D}
 			,#{SSN}

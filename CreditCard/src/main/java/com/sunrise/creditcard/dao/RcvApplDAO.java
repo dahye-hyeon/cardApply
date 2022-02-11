@@ -21,7 +21,7 @@ public class RcvApplDAO {
 	}
 	
 	/* 중복가입 불능 */
-	public int updateDoubeRcv(RcvApplVO rcvpplVo) {
+	public int updateDoubleRcv(RcvApplVO rcvpplVo) {
 		return sqlSession.update("rcvAppl.updateDoubeRcv", rcvpplVo);
 	}
 	
