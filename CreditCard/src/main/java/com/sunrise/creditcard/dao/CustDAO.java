@@ -20,4 +20,9 @@ public class CustDAO {
 	public int insertCust(CustVO custVo) {
 		return sqlSession.insert("cust.insertCust", custVo);
 	}
+	
+	/* 회원 번호 가져오기 */
+	public String custNum(CustVO custVo) {
+		return sqlSession.selectOne("cust.custNum", custVo);
+	}
 }

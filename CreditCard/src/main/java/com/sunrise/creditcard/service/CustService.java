@@ -9,4 +9,7 @@ public interface CustService {
 	
 	/* 회원 등록 */
 	public void insertCust(CustVO custVo);
+
+	/* 회원 번호 가져오기 */
+	public String custNum(CustVO custVo);
 }

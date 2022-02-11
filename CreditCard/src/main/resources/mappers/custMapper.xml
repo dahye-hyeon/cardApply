@@ -8,7 +8,7 @@
 	<select id="selectCust" resultType="Integer">
 		<![CDATA[
 			SELECT count(*) FROM CUST
-			WHERE SSN=#{SSN}
+			WHERE SSN=#{SSN} and HG_NM=#{HG_NM}
 		]]>
 	</select>
 	
@@ -28,4 +28,12 @@
 			)
 		]]>
 	</insert>
+	
+	<!-- 회원 번호 가져오기 -->
+	<select id="custNum" resultType="string">
+		<![CDATA[
+			SELECT CUST_NO FROM CUST
+			WHERE SSN = #{SSN} AND HG_NM = #{HG_NM}
+		]]>
+	</select>
 </mapper>

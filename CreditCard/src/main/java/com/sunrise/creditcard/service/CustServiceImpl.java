@@ -29,4 +29,10 @@ public class CustServiceImpl implements CustService {
 			System.out.println("이미 존재하는 회원");
 		}
 	}
+
+	/* 회원 번호 가져오기 */
+	@Override
+	public String custNum(CustVO custVo) {
+		return custDao.custNum(custVo);
+	}
 }

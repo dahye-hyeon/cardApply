@@ -1,3 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="card">
+	
+	<!-- 카드 소지 여부 -->
+	<select id="selectCard" resultType="Integer">
+		<![CDATA[
+			SELECT count(*) FROM CRD
+			WHERE CRD_NO=#{CRD_NO} and SSN=#{SSN}
+		]]>
+	</select>
+
+	<!-- 카드 생성 -->
+	<insert id="insertCard" parameterType="cardVo">
+		<![CDATA[
+			INSERT INTO CRD(CRD_NO, CUST_NO, REG_D, SSN, VLD_DUR, BRD, SCRT_NO, ENG_NM, BF_CRD_NO, LST_CRD_F, FST_REG_D, CRD_GRD, LST_OPR_TM, LST_OPR_D, LST_OPRT_EMPNO)
+			VALUES(${CRD_NO}||CARD_SEQ_NO.nextval||'1'
+			,#{CUST_NO}
+			,#{REG_D}
+			,#{SSN}
+			,TO_CHAR(add_months(sysdate,+60), 'YYYYMM')
+			,#{BRD}
+			,#{SCRT_NO}
+			,#{ENG_NM}
+			,' '
+			,'1'
+			,TO_CHAR(sysdate, 'YYYYMMDD')
+			,'1'
+			,TO_CHAR(sysdate, 'HH24:MI')
+			,TO_CHAR(sysdate, 'YYYYMMDD')
+			,00000001
+			)
+		]]>
+	</insert>
+</mapper>

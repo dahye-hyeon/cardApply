@@ -8,6 +8,7 @@
  		<typeAlias type="com.sunrise.creditcard.vo.RcvApplVO" alias="rcvApplVo" />
  		<typeAlias type="com.sunrise.creditcard.vo.CommCodeDtlVO" alias="commCodeDtlVO" />
  		<typeAlias type="com.sunrise.creditcard.vo.CustVO" alias="custVo" />
+ 		<typeAlias type="com.sunrise.creditcard.vo.CardVO" alias="cardVo" />
  	</typeAliases>
  	
  	<!-- 사용할 쿼리에 대한 등록 -->
@@ -15,5 +16,6 @@
   		<mapper resource="mappers/rcvApplMapper.xml" />
   		<mapper resource="mappers/commCodeMapper.xml" />
   		<mapper resource="mappers/custMapper.xml" />
+  		<mapper resource="mappers/cardMapper.xml" />
  	</mappers>
  </configuration>

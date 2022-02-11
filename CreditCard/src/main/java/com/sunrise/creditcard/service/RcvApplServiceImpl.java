@@ -41,8 +41,8 @@ public class RcvApplServiceImpl implements RcvApplService{
 	public List<RcvApplVO> rcvInquiry(RcvApplVO rcvpplVo) {
 		return rcvApplDao.rcvInquiry(rcvpplVo);
 	}
-
-
+	
+	
 	@Override
 	/* 신청구분 가져오기 */
 	public List<CommCodeDtlVO> getApplClas(){
